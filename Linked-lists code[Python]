@@ -1,0 +1,80 @@
+#code to implement a basic singly linked list.
+
+class Node:
+    def __init__(self,a_number):
+        self.data = a_number
+        self.next = None
+        
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    def append(self,value):
+        if self.head is None:
+            self.head = Node(value)
+            
+        else:
+            current_node = self.head
+            while current_node.next is not None:
+                current_node = current_node.next
+            current_node.next = Node(value)
+            
+    def show_elements(self):
+        current = self.head
+        while current is not None:
+            print(current.data)
+            current = current.next
+            
+    def get_length(self):
+        result = 0
+        current = self.head
+        while current is not None:
+            result+=1
+            current = current.next
+        return result
+        
+    def get_element(self,position):
+        i = 0
+        current = self.head
+        while current is not None:
+            if i == position:
+                return current.data
+            i+=1
+            current = current.next
+        return None    
+            
+node2 = Node(2)
+node3 = Node(4)
+node4 = Node(6)
+
+list1 = LinkedList()
+list1.append(2)
+list1.append(3)
+list1.append(5)
+l = list1.get_length()
+k = list1.get_element(1)
+s = list1.show_elements()
+
+
+#reversing a linked_list
+def reverse(l):
+    if l.head is None:
+        return
+    current = l.head
+    prev = None
+    while current is not None:
+        nxt = current.next
+        current.next = prev
+        prev = current
+        current = nxt
+    l.head = prev
+    
+list2 = LinkedList()
+list2.append(3)
+list2.append(4)
+list2.append(5)
+reverse(list2)
+list2.show_elements()
+
+        
+
+            
